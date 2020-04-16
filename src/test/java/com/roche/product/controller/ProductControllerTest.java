@@ -18,6 +18,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
+import java.util.Date;
+
 import static java.math.BigDecimal.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -38,13 +40,13 @@ public class ProductControllerTest {
     @Test
     public void shouldSuccesResponse_WhenPostProduct() throws Exception {
         Product product = new Product("Asprin", ONE);
-        ProductRequest productRequest = new ProductRequest();
-        productRequest.setName("Asprin");
-        productRequest.setPrice(ONE);
-        ProductResponse productResponse = new ProductResponse();
+        ProductRequest request = new ProductRequest();
+        request.setName("Asprin");
+        request.setPrice(ONE);
+        ProductResponse response = new ProductResponse("1",request.getName(),request.getPrice(),new Date());
 
 
-        Mockito.when(service.create(any())).thenReturn(productResponse);
+        Mockito.when(service.create(any())).thenReturn(response);
 
         ResultActions resultActions = mockMvc.perform(post("/api/products").contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON).content("{\"name\":\"Asprin\"}"))

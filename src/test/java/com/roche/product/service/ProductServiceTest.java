@@ -58,7 +58,7 @@ public class ProductServiceTest {
     public void findAllTest_Success() {
         when(repository.findAll()).thenReturn(products);
 
-        List<Product> products = Lists.newArrayList(service.findAll());
+        List<ProductResponse> products = service.findAll();
 
         assertThat(products).isNotEmpty();
         assertThat(products).hasSize(ProductServiceTest.products.size());
@@ -68,14 +68,15 @@ public class ProductServiceTest {
 
     @Test
     public void deleteProductTest_Success() {
-        when(repository.findById(1)).thenReturn(Optional.of(product));
+        when(repository.findById("1")).thenReturn(Optional.of(product));
 
-        boolean delete = service.delete(1);
+        service.delete("1");
 
-        assertThat(delete).isEqualTo(true);
+//        assertThat(delete).isEqualTo(true);
     }
 
     @Test
     public void updateProductTest_Success() {
 
     }
+}

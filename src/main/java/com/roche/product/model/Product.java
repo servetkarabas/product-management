@@ -1,6 +1,7 @@
 package com.roche.product.model;
 
 
+import jdk.net.SocketFlow;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,8 +16,10 @@ public class Product {
     private String id;
     private String name;
     private BigDecimal price;
+    private String status;
     @CreatedDate
     private Date date;
+
 
     public Product(String name, BigDecimal price) {
         this.name = name;
@@ -53,5 +56,13 @@ public class Product {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
