@@ -75,8 +75,8 @@ public class ProductControllerTest {
 
         doNothing().when(service).delete(anyString());
 
-        mockMvc.perform(delete("/api/products/1").contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
+        mockMvc.perform(delete("/api/products/{id}", "1").contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test

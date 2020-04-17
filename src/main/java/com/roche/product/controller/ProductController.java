@@ -29,7 +29,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ProductResponse getProduct(@RequestParam String id) {
+    public ProductResponse getProduct(@PathVariable String id) {
         return productService.find(id);
     }
 
@@ -40,13 +40,13 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(OK)
-    public void deleteProduct(@RequestParam String id) {
+    public void deleteProduct(@PathVariable String id) {
         productService.delete(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(OK)
-    public ProductResponse updateProduct(@RequestBody ProductRequest update, @RequestParam String id) {
+    public ProductResponse updateProduct(@RequestBody ProductRequest update, @PathVariable String id) {
         return productService.update(id, update);
     }
 }
