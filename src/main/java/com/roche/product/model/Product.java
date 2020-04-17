@@ -2,10 +2,10 @@ package com.roche.product.model;
 
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -17,10 +17,12 @@ public class Product {
     private String id;
     private String name;
     private BigDecimal price;
-    private StatusType statu;
+    private StatusType status;
     @CreatedDate
     private Date date;
 
+    public Product() {
+    }
 
     public Product(String name, BigDecimal price) {
         this.name = name;
@@ -59,11 +61,11 @@ public class Product {
         this.date = date;
     }
 
-    public StatusType getStatu() {
-        return statu;
+    public StatusType getStatus() {
+        return status;
     }
 
-    public void setStatu(StatusType statu) {
-        this.statu = statu;
+    public void setStatus(StatusType status) {
+        this.status = status;
     }
 }

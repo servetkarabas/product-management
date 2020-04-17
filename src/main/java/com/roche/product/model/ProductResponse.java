@@ -10,6 +10,9 @@ public class ProductResponse {
     private BigDecimal price;
     private Date date;
 
+    public ProductResponse() {
+    }
+
     public ProductResponse(String id, String name, BigDecimal price, Date date) {
         this.id = id;
         this.name = name;

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static com.roche.product.model.StatusType.ACTIVE;
@@ -27,7 +28,7 @@ public class ProductService {
 
     public ProductResponse create(ProductRequest newProduct) {
         Product product = new Product(newProduct.getName(), newProduct.getPrice());
-        product.setStatu(ACTIVE);
+        product.setStatus(ACTIVE);
 
         Product save = productRepository.save(product);
 
@@ -45,7 +46,7 @@ public class ProductService {
 
     public void delete(String id) {
         Product product = findActiveProduct(id);
-        product.setStatu(DELETED);
+        product.setStatus(DELETED);
         productRepository.save(product);
     }
 
@@ -62,13 +63,15 @@ public class ProductService {
     }
 
     public List<ProductResponse> findAll() {
-        return productRepository.findByStatu(ACTIVE).stream().map(this::toResponse).collect(toList());
+        return Arrays.asList(new ProductResponse());
+//        return productRepository.findByStatu(ACTIVE).stream().map(this::toResponse).collect(toList());
     }
 
 
     private Product findActiveProduct(String id) {
         try{
-            return  productRepository.findByIdByStatu(id,ACTIVE);
+            return new Product();
+//            return  productRepository.findByIdByStatu(id,ACTIVE);
         }catch (Exception e){
             logger.error("product could not find.", e);
             throw new ProductNotFoundException();
