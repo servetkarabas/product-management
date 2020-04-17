@@ -10,7 +10,7 @@ To Run the service
 
 Clean Build
 ------------
-./gradlew clean install
+./gradlew clean build
 
 
 Swagger address

@@ -1,5 +1,6 @@
-package com.roche.product.exception;
+package com.roche.product.exception.handler;
 
+import com.roche.product.exception.ProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
