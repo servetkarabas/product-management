@@ -6,9 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
-    //    Optional<Product> findByIdAndByStatus(String id, StatusType status);
+    Optional<Product> findByIdAndStatus(String id, StatusType status);
     List<Product> findByStatus(StatusType status);
+
 }

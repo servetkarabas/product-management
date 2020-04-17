@@ -20,6 +20,7 @@ import java.util.Optional;
 import static com.roche.product.model.StatusType.ACTIVE;
 import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.TEN;
+import static java.util.Optional.of;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.any;
@@ -71,13 +72,11 @@ public class ProductServiceTest {
 
 
     @Test
-    @Ignore
     public void shouldGetNotFoundException_WhenDeleteWrongProduct() {
-        when(repository.findById(any())).thenReturn(Optional.of(product));
-        product.setId("1");
+        when(repository.findByIdAndStatus(any(),any())).thenThrow(new ProductNotFoundException());
 
         assertThrows(ProductNotFoundException.class, () -> {
-            service.delete("22222222222");
+            service.delete("AAAA");
         });
     }
 
@@ -85,10 +84,10 @@ public class ProductServiceTest {
     public void updateProductTest_Success() {
         product.setPrice(TEN);
         product.setStatus(ACTIVE);
-        when(repository.findById(any())).thenReturn(Optional.of(product));
+        when(repository.findByIdAndStatus(any(),any())).thenReturn(of(product));
         when(repository.save(any())).thenReturn(product);
-
         productRequest.setPrice(ONE);
+
         ProductResponse update = service.update("1", productRequest);
 
 

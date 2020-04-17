@@ -3,6 +3,7 @@ package com.roche.product.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ public class Product {
     private String id;
     private String name;
     private BigDecimal price;
+    @Column(name="Status")
     private StatusType status;
     private Date date;
 

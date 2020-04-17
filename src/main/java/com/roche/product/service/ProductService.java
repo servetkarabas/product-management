@@ -54,7 +54,6 @@ public class ProductService {
         productRepository.save(product);
     }
 
-
     public ProductResponse update(String id, ProductRequest request) {
         Product product = findActiveProduct(id);
         product.setName(request.getName());
@@ -70,13 +69,9 @@ public class ProductService {
         return productRepository.findByStatus(ACTIVE).stream().map(this::toResponse).collect(toList());
     }
 
-
     private Product findActiveProduct(String id) {
         try {
-            Optional<Product> productRepositoryById = productRepository.findById(id);
-            if (productRepositoryById.get().getStatus().equals(DELETED)) {
-                throw new ProductNotFoundException();
-            }
+            Optional<Product> productRepositoryById = productRepository.findByIdAndStatus(id,ACTIVE);
             return productRepositoryById.get();
         } catch (Exception e) {
             logger.error("product could not find.", e);
