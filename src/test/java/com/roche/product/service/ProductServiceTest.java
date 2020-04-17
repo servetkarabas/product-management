@@ -4,7 +4,6 @@ import com.roche.product.model.Product;
 import com.roche.product.model.ProductRequest;
 import com.roche.product.model.ProductResponse;
 import com.roche.product.repository.ProductRepository;
-import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

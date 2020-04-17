@@ -13,9 +13,8 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-
     @ExceptionHandler(ProductNotFoundException.class)
-    public final ResponseEntity<Map<String, Object>> handleAccountNotFoundException(ProductNotFoundException ex,
+    public final ResponseEntity<Map<String, Object>> handleProductNotFoundException(ProductNotFoundException ex,
                                                                                     WebRequest request) {
         return returnResponse("product doesnt exist", HttpStatus.NOT_FOUND);
     }

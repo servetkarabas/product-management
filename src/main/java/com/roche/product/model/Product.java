@@ -1,22 +1,23 @@
 package com.roche.product.model;
 
 
-import jdk.net.SocketFlow;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import java.math.BigDecimal;
 import java.util.Date;
 
 
-@Document(collection = "Product")
+@Entity
 public class Product {
     @Id
+    @GeneratedValue
     private String id;
     private String name;
     private BigDecimal price;
-    private String status;
+    private StatusType statu;
     @CreatedDate
     private Date date;
 
@@ -58,11 +59,11 @@ public class Product {
         this.date = date;
     }
 
-    public String getStatus() {
-        return status;
+    public StatusType getStatu() {
+        return statu;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatu(StatusType statu) {
+        this.statu = statu;
     }
 }
