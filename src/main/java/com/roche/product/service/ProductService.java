@@ -1,14 +1,16 @@
 package com.roche.product.service;
 
 import com.roche.product.exception.ProductNotFoundException;
-import com.roche.product.model.*;
+import com.roche.product.model.Product;
+import com.roche.product.model.ProductRequest;
+import com.roche.product.model.ProductResponse;
+import com.roche.product.model.ProductResponseBuilder;
 import com.roche.product.repository.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +21,9 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 public class ProductService {
-    private Logger  logger = LoggerFactory.getLogger(ProductService.class);
+    private Logger logger = LoggerFactory.getLogger(ProductService.class);
 
-    private ProductRepository   productRepository;
+    private ProductRepository productRepository;
 
     @Autowired
     public ProductService(ProductRepository productRepository) {
@@ -53,7 +55,7 @@ public class ProductService {
     }
 
 
-    public ProductResponse update(String id, ProductRequest    request) {
+    public ProductResponse update(String id, ProductRequest request) {
         Product product = findActiveProduct(id);
         product.setName(request.getName());
         product.setPrice(request.getPrice());
@@ -65,19 +67,18 @@ public class ProductService {
     }
 
     public List<ProductResponse> findAll() {
-//        return Arrays.asList(new ProductResponse());
         return productRepository.findByStatus(ACTIVE).stream().map(this::toResponse).collect(toList());
     }
 
 
     private Product findActiveProduct(String id) {
-        try{
+        try {
             Optional<Product> productRepositoryById = productRepository.findById(id);
-            if( productRepositoryById.get().getStatus().equals(DELETED) ){
+            if (productRepositoryById.get().getStatus().equals(DELETED)) {
                 throw new ProductNotFoundException();
             }
             return productRepositoryById.get();
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("product could not find.", e);
             throw new ProductNotFoundException();
         }

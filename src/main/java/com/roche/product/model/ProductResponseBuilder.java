@@ -18,7 +18,7 @@ public class ProductResponseBuilder {
     }
 
     public ProductResponse build() {
-        return new ProductResponse(id,name,price,date);
+        return new ProductResponse(id, name, price, date);
     }
 
 }

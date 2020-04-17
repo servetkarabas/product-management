@@ -3,9 +3,9 @@ package com.roche.product.model;
 public enum StatusType {
 //    ACTIVE,DELETED;
 
-    ACTIVE(1,"ACTIVE"), DELETED(2,"DELETED");
+    ACTIVE(1, "ACTIVE"), DELETED(2, "DELETED");
     int id;
-    String  name;
+    String name;
 
     StatusType(int id, String name) {
         this.id = id;

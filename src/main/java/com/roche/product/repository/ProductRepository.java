@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
-//    Optional<Product> findByIdAndByStatus(String id, StatusType status);
+    //    Optional<Product> findByIdAndByStatus(String id, StatusType status);
     List<Product> findByStatus(StatusType status);
 }

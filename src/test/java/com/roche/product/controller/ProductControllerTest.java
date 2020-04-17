@@ -1,13 +1,11 @@
 package com.roche.product.controller;
 
 
-import com.roche.product.model.Product;
 import com.roche.product.model.ProductRequest;
 import com.roche.product.model.ProductResponse;
 import com.roche.product.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -17,11 +15,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-
 import java.util.Arrays;
 import java.util.Date;
 
-import static java.math.BigDecimal.*;
+import static java.math.BigDecimal.ONE;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
@@ -45,7 +42,7 @@ public class ProductControllerTest {
         ProductRequest request = new ProductRequest();
         request.setName("Asprin");
         request.setPrice(ONE);
-        ProductResponse response = new ProductResponse("1",request.getName(),request.getPrice(),new Date());
+        ProductResponse response = new ProductResponse("1", request.getName(), request.getPrice(), new Date());
 
 
         when(service.create(any())).thenReturn(response);
@@ -61,7 +58,7 @@ public class ProductControllerTest {
         ProductRequest request = new ProductRequest();
         request.setName("Asprin");
         request.setPrice(ONE);
-        ProductResponse response = new ProductResponse("1",request.getName(),request.getPrice(),new Date());
+        ProductResponse response = new ProductResponse("1", request.getName(), request.getPrice(), new Date());
 
         when(service.findAll()).thenReturn(Arrays.asList(response));
 
@@ -74,7 +71,7 @@ public class ProductControllerTest {
         ProductRequest request = new ProductRequest();
         request.setName("Asprin");
         request.setPrice(ONE);
-        ProductResponse response = new ProductResponse("1",request.getName(),request.getPrice(),new Date());
+        ProductResponse response = new ProductResponse("1", request.getName(), request.getPrice(), new Date());
 
         doNothing().when(service).delete(anyString());
 
@@ -87,10 +84,10 @@ public class ProductControllerTest {
         ProductRequest request = new ProductRequest();
         request.setName("Asprin");
         request.setPrice(ONE);
-        ProductResponse response = new ProductResponse("1",request.getName(),request.getPrice(),new Date());
-        ProductResponse update = new ProductResponse("1","updated",request.getPrice(),new Date());
+        ProductResponse response = new ProductResponse("1", request.getName(), request.getPrice(), new Date());
+        ProductResponse update = new ProductResponse("1", "updated", request.getPrice(), new Date());
 
-        when(service.update(any(),any())).thenReturn(update);
+        when(service.update(any(), any())).thenReturn(update);
 
         mockMvc.perform(put("/api/products/1").content("{\"name\":\"Asprin\",\"price\":100}").contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
