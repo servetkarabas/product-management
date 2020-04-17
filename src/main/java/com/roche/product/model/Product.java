@@ -2,7 +2,6 @@ package com.roche.product.model;
 
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,9 +18,7 @@ public class Product {
     private String id;
     private String name;
     private BigDecimal price;
-
     private StatusType status;
-    @CreatedDate
     private Date date;
 
     public Product() {

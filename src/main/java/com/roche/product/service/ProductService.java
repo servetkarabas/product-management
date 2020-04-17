@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class ProductService {
     public ProductResponse create(ProductRequest newProduct) {
         Product product = new Product(newProduct.getName(), newProduct.getPrice());
         product.setStatus(ACTIVE);
-
+        product.setDate(new Date());
         Product save = productRepository.save(product);
 
         ProductResponse productResponse = toResponse(save);
