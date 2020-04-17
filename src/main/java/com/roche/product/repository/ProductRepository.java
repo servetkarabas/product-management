@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
-    Product findByIdByStatus(String id, StatusType status);
+public interface ProductRepository extends JpaRepository<Product, String> {
+//    Optional<Product> findByIdAndByStatus(String id, StatusType status);
     List<Product> findByStatus(StatusType status);
 }

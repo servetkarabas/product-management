@@ -3,6 +3,7 @@ package com.roche.product.model;
 
 import org.springframework.data.annotation.CreatedDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,6 +18,7 @@ public class Product {
     private String id;
     private String name;
     private BigDecimal price;
+
     private StatusType status;
     @CreatedDate
     private Date date;

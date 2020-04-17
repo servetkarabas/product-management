@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static com.roche.product.model.StatusType.ACTIVE;
 import static com.roche.product.model.StatusType.DELETED;
@@ -63,15 +64,18 @@ public class ProductService {
     }
 
     public List<ProductResponse> findAll() {
-        return Arrays.asList(new ProductResponse());
-//        return productRepository.findByStatu(ACTIVE).stream().map(this::toResponse).collect(toList());
+//        return Arrays.asList(new ProductResponse());
+        return productRepository.findByStatus(ACTIVE).stream().map(this::toResponse).collect(toList());
     }
 
 
     private Product findActiveProduct(String id) {
         try{
-            return new Product();
-//            return  productRepository.findByIdByStatu(id,ACTIVE);
+            Optional<Product> productRepositoryById = productRepository.findById(id);
+            if( productRepositoryById.get().getStatus().equals(DELETED) ){
+                throw new ProductNotFoundException();
+            }
+            return productRepositoryById.get();
         }catch (Exception e){
             logger.error("product could not find.", e);
             throw new ProductNotFoundException();
