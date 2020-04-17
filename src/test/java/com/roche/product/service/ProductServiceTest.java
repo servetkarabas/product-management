@@ -4,9 +4,7 @@ import com.roche.product.exception.ProductNotFoundException;
 import com.roche.product.model.Product;
 import com.roche.product.model.ProductRequest;
 import com.roche.product.model.ProductResponse;
-import com.roche.product.model.StatusType;
 import com.roche.product.repository.ProductRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,7 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
