@@ -3,6 +3,7 @@ package com.roche.product.controller;
 
 import com.roche.product.model.ProductRequest;
 import com.roche.product.model.ProductResponse;
+import com.roche.product.repository.ProductRepository;
 import com.roche.product.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,6 +37,8 @@ public class ProductControllerTest {
     @MockBean
     private ProductService service;
 
+    @MockBean
+    private ProductRepository repository;
 
     @Test
     public void shouldSuccesResponse_WhenPostProduct() throws Exception {

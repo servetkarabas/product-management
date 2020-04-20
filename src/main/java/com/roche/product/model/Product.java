@@ -1,26 +1,27 @@
 package com.roche.product.model;
 
 
-import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.annotation.Generated;
 import java.math.BigDecimal;
 import java.util.Date;
 
 
-@Entity
+@Document
 public class Product {
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String name;
     private BigDecimal price;
     private StatusType status;
+    @CreatedDate
     private Date date;
+    @LastModifiedDate
+    private Date updated;
 
     public Product() {
     }
@@ -68,5 +69,13 @@ public class Product {
 
     public void setStatus(StatusType status) {
         this.status = status;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
     }
 }
